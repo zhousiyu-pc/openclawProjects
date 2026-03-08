@@ -22,15 +22,14 @@ backups/*.tar.gz
 *.secret
 config.local.*
 
-# node_modules
-node_modules/
+# node_modules (所有项目的依赖)
+**/node_modules/
 
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
 *.so
 .eggs/
 *.egg-info/
@@ -41,9 +40,11 @@ build/
 venv/
 env/
 .venv/
+pptx_venv/
 
 # IDE
 .idea/
 .vscode/
-*.swp
-*.swo
+
+# OpenClaw 状态文件
+.openclaw/
