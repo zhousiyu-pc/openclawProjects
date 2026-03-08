@@ -1,0 +1,167 @@
+graph TD
+    %% 用户层 %%
+    subgraph "用户层"
+        WebPortal[Web门户]
+        MobileApp[移动端APP]
+        APIClient[API客户端]
+    end
+
+    %% 应用层 %%
+    subgraph "应用层"
+        AccountModule[账号与组织管理]
+        ShopModule[店铺与渠道管理]
+        ProductModule[商品中心(PIM)]
+        OrderModule[订单中心]
+        InventoryModule[库存与仓储(WMS)]
+        PurchaseModule[采购与供应链]
+        LogisticsModule[物流与发货]
+        AdsModule[广告与推广]
+        CrmModule[客服与口碑]
+        FinanceModule[财务与税务]
+        BiModule[BI与统计分析]
+        ToolsModule[工具与增长插件]
+        RuleEngineModule[规则引擎]
+        LocalizationModule[日本本地化与合规]
+        AdminModule[系统后台与运营]
+        AiAssistantModule[AI与智能助手]
+    end
+
+    %% 服务层 %%
+    subgraph "服务层"
+        AuthServer[认证授权服务]
+        PermissionServer[权限控制服务]
+        ProductCenterService[商品中心服务]
+        OrderProcessService[订单处理服务]
+        InventoryService[库存服务]
+        WmsService[WMS服务]
+        SupplyChainService[供应链服务]
+        LogisticsService[物流服务]
+        AdsService[广告服务]
+        CrmService[客服服务]
+        FinanceService[财务服务]
+        BiAnalyticsService[BI分析服务]
+        RuleEngineService[规则引擎服务]
+        LocalizationService[本地化服务]
+        NotificationService[通知服务]
+        FileService[文件服务]
+        LogService[日志服务]
+        AIService[AI智能服务]
+        CacheService[缓存服务]
+        SearchService[搜索引擎服务]
+    end
+
+    %% 数据层 %%
+    subgraph "数据层"
+        MainDB[(主数据库<br/>MySQL集群)]
+        RedisCache[(Redis缓存)]
+        ElasticSearch[(Elasticsearch)]
+        DataWarehouse[(数据仓库<br/>ClickHouse)]
+        FileStorage[(文件存储<br/>OSS/S3)]
+        LogDB[(日志数据库<br/>ES/Kafka)]
+    end
+
+    %% 外部集成层 %%
+    subgraph "外部集成层"
+        subgraph "第三方平台"
+            AmazonAPI[亚马逊API]
+            RakutenAPI[乐天API]
+            YahooAPI[雅虎购物API]
+            OtherPlatforms[其他平台API]
+        end
+        
+        subgraph "物流服务商"
+            Yamato[Yamato运输]
+            Sagawa[Sagawa急便]
+            OverseasLogistics[海外物流商]
+        end
+        
+        subgraph "支付网关"
+            Stripe[Stripe]
+            PayPal[PayPal]
+            LocalPayment[本地支付方式]
+        end
+        
+        subgraph "其他外部服务"
+            TaxSystem[日本税务系统]
+            AddressService[地址标准化服务]
+            TranslationAPI[翻译API]
+            AIPlatform[AI平台]
+        end
+    end
+
+    %% 连接关系 %%
+    WebPortal --- AccountModule
+    MobileApp --- AccountModule
+    APIClient --- AccountModule
+
+    AccountModule --- AuthServer
+    ShopModule --- AuthServer
+    ProductModule --- ProductCenterService
+    OrderModule --- OrderProcessService
+    InventoryModule --- InventoryService
+    PurchaseModule --- SupplyChainService
+    LogisticsModule --- LogisticsService
+    AdsModule --- AdsService
+    CrmModule --- CrmService
+    FinanceModule --- FinanceService
+    BiModule --- BiAnalyticsService
+    ToolsModule --- AIService
+    RuleEngineModule --- RuleEngineService
+    LocalizationModule --- LocalizationService
+    AdminModule --- AuthServer
+    AiAssistantModule --- AIService
+
+    AuthServer --- PermissionServer
+    ProductCenterService --- ProductModule
+    OrderProcessService --- OrderModule
+    InventoryService --- WmsService
+    SupplyChainService --- PurchaseModule
+    LogisticsService --- LogisticsModule
+    AdsService --- AdsModule
+    CrmService --- CrmModule
+    FinanceService --- FinanceModule
+    BiAnalyticsService --- BiModule
+    RuleEngineService --- RuleEngineModule
+    LocalizationService --- LocalizationModule
+    AIService --- AiAssistantModule
+
+    ProductCenterService --- MainDB
+    OrderProcessService --- MainDB
+    WmsService --- MainDB
+    SupplyChainService --- MainDB
+    LogisticsService --- MainDB
+    AdsService --- MainDB
+    CrmService --- MainDB
+    FinanceService --- MainDB
+    BiAnalyticsService --- DataWarehouse
+    RuleEngineService --- MainDB
+    PermissionServer --- MainDB
+    AuthServer --- MainDB
+    LocalizationService --- MainDB
+    NotificationService --- MainDB
+    FileService --- FileStorage
+    LogService --- LogDB
+    AIService --- AIPlatform
+    SearchService --- ElasticSearch
+    CacheService --- RedisCache
+
+    ShopModule --- AmazonAPI
+    ShopModule --- RakutenAPI
+    ShopModule --- YahooAPI
+    ShopModule --- OtherPlatforms
+    
+    LogisticsModule --- Yamato
+    LogisticsModule --- Sagawa
+    LogisticsModule --- OverseasLogistics
+    
+    FinanceModule --- Stripe
+    FinanceModule --- PayPal
+    FinanceModule --- LocalPayment
+    FinanceModule --- TaxSystem
+    
+    LocalizationModule --- AddressService
+    
+    CrmModule --- TranslationAPI
+    
+    AiAssistantModule --- AIPlatform
+    ToolsModule --- AIPlatform

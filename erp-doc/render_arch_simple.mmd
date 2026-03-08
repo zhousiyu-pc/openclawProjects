@@ -1,0 +1,70 @@
+graph TD
+    subgraph 用户层
+        A[Web 门户]
+        B[移动端 APP]
+        C[API 客户端]
+    end
+    
+    subgraph 应用层
+        D[账号管理]
+        E[店铺管理]
+        F[商品中心 PIM]
+        G[订单中心]
+        H[库存 WMS]
+        I[采购供应链]
+        J[物流发货]
+        K[广告推广]
+        L[客服 CRM]
+        M[财务税务]
+        N[BI 分析]
+        O[AI 助手]
+    end
+    
+    subgraph 服务层
+        P[认证授权]
+        Q[商品服务]
+        R[订单服务]
+        S[库存服务]
+        T[物流服务]
+        U[AI 服务]
+    end
+    
+    subgraph 数据层
+        V[(MySQL 集群)]
+        W[(Redis)]
+        X[(Elasticsearch)]
+        Y[(数据仓库)]
+    end
+    
+    subgraph 外部集成
+        Z[亚马逊/乐天/雅虎 API]
+        AA[物流商]
+        AB[支付网关]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> P
+    E --> P
+    F --> Q
+    G --> R
+    H --> S
+    I --> T
+    J --> T
+    K --> U
+    L --> U
+    M --> U
+    N --> U
+    O --> U
+    Q --> V
+    R --> V
+    S --> V
+    T --> V
+    U --> V
+    P --> W
+    Q --> X
+    N --> Y
+    E --> Z
+    J --> AA
+    M --> AB

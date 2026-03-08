@@ -1,0 +1,121 @@
+flowchart TD
+    subgraph 商品上架流程
+        A1([开始-商品上架])
+        A2[采购商品入库]
+        A3[商品信息录入]
+        A4{商品资料完整?}
+        A5[SPU/SKU架构建立]
+        A6[多语言文案维护]
+        A7[多平台Listing映射]
+        A8[批量编辑与分发]
+        A9[多平台上架]
+        A10([结束-商品上架完成])
+        
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+        A4 -->|否| A3
+        A4 -->|是| A5
+        A5 --> A6
+        A6 --> A7
+        A7 --> A8
+        A8 --> A9
+        A9 --> A10
+    end
+    
+    subgraph 订单处理流程
+        B1([开始-客户下单])
+        B2[订单接收与验证]
+        B3[订单状态流转]
+        B4{订单是否有效?}
+        B5[自动分仓与合单拆单]
+        B6[库存预占]
+        B7{库存充足?}
+        B8[安排发货]
+        B9[批量打单与物流]
+        B10[追踪号回传]
+        B11[订单完成]
+        B12([结束-订单处理完成])
+        
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 -->|否| B12
+        B4 -->|是| B5
+        B5 --> B6
+        B6 --> B7
+        B7 -->|否| B12
+        B7 -->|是| B8
+        B8 --> B9
+        B9 --> B10
+        B10 --> B11
+        B11 --> B12
+    end
+    
+    subgraph 退换货流程
+        C1([开始-退换货申请])
+        C2[售后单据管理]
+        C3[退换货原因审核]
+        C4{符合退换货政策?}
+        C5[安排退货物流]
+        C6[商品验收质检]
+        C7{商品合格?}
+        C8[退款处理或换货发货]
+        C9[财务结算调整]
+        C10([结束-退换货处理完成])
+        
+        C1 --> C2
+        C2 --> C3
+        C3 --> C4
+        C4 -->|否| C10
+        C4 -->|是| C5
+        C5 --> C6
+        C6 --> C7
+        C7 -->|否| C10
+        C7 -->|是| C8
+        C8 --> C9
+        C9 --> C10
+    end
+    
+    subgraph 财务结算流程
+        D1([开始-财务结算])
+        D2[平台结算单解析]
+        D3[多币种汇率转换]
+        D4[成本分摊与利润分析]
+        D5{结算数据准确?}
+        D6[消费税计算]
+        D7[发票管理]
+        D8[财务对账]
+        D9[账务入账]
+        D10([结束-财务结算完成])
+        
+        D1 --> D2
+        D2 --> D3
+        D3 --> D4
+        D4 --> D5
+        D5 -->|否| D2
+        D5 -->|是| D6
+        D6 --> D7
+        D7 --> D8
+        D8 --> D9
+        D9 --> D10
+    end
+    
+    style A1 fill:#e1f5fe
+    style A10 fill:#e1f5fe
+    style B1 fill:#e1f5fe
+    style B12 fill:#e1f5fe
+    style C1 fill:#e1f5fe
+    style C10 fill:#e1f5fe
+    style D1 fill:#e1f5fe
+    style D10 fill:#e1f5fe
+    style A4 fill:#fff3e0
+    style A7 fill:#f3e5f5
+    style B4 fill:#fff3e0
+    style B7 fill:#fff3e0
+    style B9 fill:#f3e5f5
+    style C4 fill:#fff3e0
+    style C7 fill:#fff3e0
+    style C6 fill:#f3e5f5
+    style D5 fill:#fff3e0
+    style D6 fill:#f3e5f5
