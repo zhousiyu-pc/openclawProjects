@@ -14,36 +14,13 @@ logs/
 .DS_Store
 Thumbs.db
 
-# 备份文件
+# 备份文件（已同步到 GitHub 就不需要本地保留）
 backups/*.tar.gz
 
-# 敏感配置文件
+# 敏感配置文件（如有）
 *.env
 *.secret
 config.local.*
 
-# node_modules
+# node_modules (如果有)
 node_modules/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-.eggs/
-*.egg-info/
-dist/
-build/
-
-# 虚拟环境
-venv/
-env/
-.venv/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
